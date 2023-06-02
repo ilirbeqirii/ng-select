@@ -1,7 +1,12 @@
+import { JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgSelectComponent } from '@ng-select/ng-select';
 
 @Component({
     selector: 'group-selectable-hidden-example',
+    standalone: true,
+    imports: [JsonPipe, FormsModule, NgSelectComponent],
     templateUrl: './group-selectable-hidden-example.component.html',
     styleUrls: ['./group-selectable-hidden-example.component.scss']
 })

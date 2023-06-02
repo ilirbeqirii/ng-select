@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { NgIf } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectComponent } from '@ng-select/ng-select';
 
 @Component({
     selector: 'forms-multi-select-example',
+    standalone: true,
+    imports: [ReactiveFormsModule, NgIf, NgSelectComponent],
     templateUrl: './forms-multi-select-example.component.html',
     styleUrls: ['./forms-multi-select-example.component.scss']
 })
@@ -16,9 +20,7 @@ export class FormsMultiSelectExampleComponent implements OnInit {
         { id: 3, name: 'Pavilnys (Disabled)', disabled: true },
         { id: 4, name: 'Pabradė' },
     ];
-
-    constructor(private fb: FormBuilder) {
-    }
+    private fb = inject(FormBuilder);
 
     ngOnInit() {
         this.heroForm = this.fb.group({

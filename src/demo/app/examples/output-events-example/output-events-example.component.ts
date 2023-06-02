@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { DataService } from '../data.service';
+import { NgSelectComponent } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
+import { JsonPipe, NgFor, NgIf } from '@angular/common';
 
 interface Event {
     name: string;
@@ -8,6 +11,8 @@ interface Event {
 
 @Component({
     selector: 'output-events-example',
+    standalone: true,
+    imports: [NgSelectComponent, FormsModule, NgIf, NgFor, JsonPipe],
     templateUrl: './output-events-example.component.html',
     styleUrls: ['./output-events-example.component.scss']
 })
@@ -16,15 +21,14 @@ export class OutputEventsExampleComponent implements OnInit {
     selectedItems: any;
     items = [];
 
+    private dataService: DataService = inject(DataService);
+
     events: Event[] = [];
 
-    constructor(private dataService: DataService) {
+    ngOnInit() {
         this.dataService.getPeople().subscribe(items => {
             this.items = items;
         });
-    }
-
-    ngOnInit() {
     }
 
     onChange($event) {

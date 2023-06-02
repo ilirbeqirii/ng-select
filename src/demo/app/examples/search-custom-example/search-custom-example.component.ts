@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { DataService, Person } from '../data.service';
+import { NgSelectComponent } from '@ng-select/ng-select';
 
 @Component({
     selector: 'search-custom-example',
+    standalone: true,
+    imports: [NgSelectComponent],
     templateUrl: './search-custom-example.component.html',
     styleUrls: ['./search-custom-example.component.scss']
 })
@@ -10,10 +13,7 @@ export class SearchCustomExampleComponent implements OnInit {
 
     people: Person[] = [];
     peopleLoading = false;
-
-    constructor(
-        private dataService: DataService) {
-    }
+    private dataService: DataService = inject(DataService);
 
     ngOnInit() {
         this.loadPeople();

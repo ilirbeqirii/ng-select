@@ -1,7 +1,12 @@
+import { JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgSelectComponent } from '@ng-select/ng-select';
 
 @Component({
     selector: 'bindings-default-example',
+    standalone: true,
+    imports: [JsonPipe, FormsModule, NgSelectComponent],
     templateUrl: './bindings-default-example.component.html',
     styleUrls: ['./bindings-default-example.component.scss']
 })

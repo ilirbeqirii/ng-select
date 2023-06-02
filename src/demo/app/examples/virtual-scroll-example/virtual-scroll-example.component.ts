@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { NgSelectComponent } from '@ng-select/ng-select';
 
 @Component({
     selector: 'virtual-scroll-example',
+    standalone: true,
+    imports: [NgSelectComponent],
     templateUrl: './virtual-scroll-example.component.html',
     styleUrls: ['./virtual-scroll-example.component.scss']
 })
@@ -13,9 +16,7 @@ export class VirtualScrollExampleComponent implements OnInit {
     bufferSize = 50;
     numberOfItemsFromEndBeforeFetchingMore = 10;
     loading = false;
-
-    constructor(private http: HttpClient) {
-    }
+    private http = inject(HttpClient);
 
     ngOnInit() {
         this.http.get<any[]>('https://jsonplaceholder.typicode.com/photos').subscribe(photos => {

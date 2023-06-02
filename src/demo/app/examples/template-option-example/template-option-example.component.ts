@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgSelectComponent } from '@ng-select/ng-select';
 
 @Component({
     selector: 'template-option-example',
+    standalone: true,
+    imports: [FormsModule, NgSelectComponent],
     templateUrl: './template-option-example.component.html',
     styleUrls: ['./template-option-example.component.scss']
 })

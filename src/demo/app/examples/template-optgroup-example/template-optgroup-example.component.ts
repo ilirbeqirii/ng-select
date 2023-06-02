@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgSelectComponent } from '@ng-select/ng-select';
 
 @Component({
     selector: 'template-optgroup-example',
+    standalone: true,
+    imports: [FormsModule, NgSelectComponent],
     templateUrl: './template-optgroup-example.component.html',
     styleUrls: ['./template-optgroup-example.component.scss']
 })

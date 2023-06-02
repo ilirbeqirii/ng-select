@@ -1,7 +1,12 @@
+import { JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgSelectComponent } from '@ng-select/ng-select';
 
 @Component({
     selector: 'group-children-example',
+    standalone: true,
+    imports: [JsonPipe, FormsModule, NgSelectComponent],
     templateUrl: './group-children-example.component.html',
     styleUrls: ['./group-children-example.component.scss']
 })

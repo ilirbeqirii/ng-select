@@ -13,6 +13,7 @@ import { appRoutes } from './routes';
 import { ExampleHostDirective, ExampleViewerComponent } from './shared/example-viewer/example-viewer.component';
 import { StackblitzButtonComponent } from './shared/example-viewer/stackblitz-button/stackblitz-button.component';
 import { RouteViewerComponent } from './shared/route-viewer/route-viewer.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     imports: [
@@ -20,6 +21,7 @@ import { RouteViewerComponent } from './shared/route-viewer/route-viewer.compone
         HttpClientModule,
         ExamplesModule,
         NgbModule,
+        CommonModule,
         RouterModule.forRoot(appRoutes, {
     useHash: true
 })

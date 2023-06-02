@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DataService } from '../data.service';
+import { NgSelectComponent } from '@ng-select/ng-select';
 
 @Component({
     selector: 'forms-custom-template-example',
+    standalone: true,
+    imports: [NgSelectComponent, ReactiveFormsModule],
     templateUrl: './forms-custom-template-example.component.html',
     styleUrls: ['./forms-custom-template-example.component.scss']
 })
@@ -12,12 +15,9 @@ export class FormsCustomTemplateExampleComponent implements OnInit {
 
     heroForm: FormGroup;
     photos = [];
-
-    constructor(
-        private fb: FormBuilder,
-        private modalService: NgbModal,
-        private dataService: DataService) {
-    }
+    private dataService: DataService = inject(DataService);
+    private fb = inject(FormBuilder);
+    private modalService = inject(NgbModal);
 
     ngOnInit() {
         this.loadPhotos();

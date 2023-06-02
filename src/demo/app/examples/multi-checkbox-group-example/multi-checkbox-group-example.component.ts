@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { DataService, Person } from '../data.service';
 import { map } from 'rxjs/operators';
+import { FormsModule } from '@angular/forms';
+import { NgSelectComponent } from '@ng-select/ng-select';
+import { JsonPipe } from '@angular/common';
 
 @Component({
     selector: 'multi-checkbox-group-example',
+    standalone: true,
+    imports: [FormsModule, NgSelectComponent, JsonPipe],
     templateUrl: './multi-checkbox-group-example.component.html',
     styleUrls: ['./multi-checkbox-group-example.component.scss']
 })
@@ -11,9 +16,7 @@ export class MultiCheckboxGroupExampleComponent implements OnInit {
 
     people: Person[] = [];
     selectedPeople = [];
-
-    constructor(private dataService: DataService) {
-    }
+    private dataService: DataService = inject(DataService);
 
     ngOnInit() {
         this.dataService.getPeople()

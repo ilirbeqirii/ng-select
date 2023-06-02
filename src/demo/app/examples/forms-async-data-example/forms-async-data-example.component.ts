@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectComponent } from '@ng-select/ng-select'
 import { delay } from 'rxjs/operators';
 import { DataService } from '../data.service';
 
 @Component({
     selector: 'forms-async-data-example',
+    standalone: true,
+    imports: [NgSelectComponent, ReactiveFormsModule],
     templateUrl: './forms-async-data-example.component.html',
     styleUrls: ['./forms-async-data-example.component.scss']
 })
@@ -14,11 +16,8 @@ export class FormsAsyncDataExampleComponent implements OnInit {
     heroForm: FormGroup;
     albums = [];
     allAlbums = [];
-
-    constructor(
-        private fb: FormBuilder,
-        private dataService: DataService) {
-    }
+    private dataService: DataService = inject(DataService);
+    private fb = inject(FormBuilder);
 
     ngOnInit() {
         this.loadAlbums();

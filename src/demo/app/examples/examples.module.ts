@@ -1,8 +1,4 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { AppendToExampleComponent } from './append-to-example/append-to-example.component';
 import { BindingsCustomExampleComponent } from './bindings-custom-example/bindings-custom-example.component';
 import { BindingsDefaultExampleComponent } from './bindings-default-example/bindings-default-example.component';
@@ -46,10 +42,12 @@ import { TemplateOptionExampleComponent } from './template-option-example/templa
 import { TemplateSearchExampleComponent } from './template-search-example/template-search-example.component';
 import { VirtualScrollExampleComponent } from './virtual-scroll-example/virtual-scroll-example.component';
 import { SearchEditableExampleComponent } from './search-editable-example/search-editable-example.component';
+import { provideCustomSelectionModelFactory } from 'src/ng-select/lib/selection-model.provider';
 
 
-const examples = [DataSourceBackendExampleComponent,
+const examples = [
     DataSourceArrayExampleComponent,
+    DataSourceBackendExampleComponent,
     DataSourceOptionsExampleComponent,
     FormsWithOptionsExampleComponent,
     FormsSingleSelectExampleComponent,
@@ -85,30 +83,19 @@ const examples = [DataSourceBackendExampleComponent,
     VirtualScrollExampleComponent,
     DropdownPositionExampleComponent,
     AppendToExampleComponent,
+    SearchEditableExampleComponent,
     GroupDefaultExampleComponent,
     GroupFunctionExampleComponent,
     GroupSelectableExampleComponent,
     GroupSelectableHiddenExampleComponent,
     GroupChildrenExampleComponent,
-    SearchEditableExampleComponent,
 ];
 
 @NgModule({
-    declarations: examples,
     imports: [
-        NgSelectModule,
-        NgOptionHighlightModule,
-        FormsModule,
-        CommonModule,
-        ReactiveFormsModule
+        ...examples
     ],
-    exports: [
-        NgSelectModule,
-        NgOptionHighlightModule,
-        FormsModule,
-        CommonModule,
-        ReactiveFormsModule
-    ]
+    providers: [provideCustomSelectionModelFactory()]
 })
 export class ExamplesModule {
 }

@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { concat, Observable, of, Subject } from 'rxjs';
 import { DataService, Person } from '../data.service';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs/operators';
+import { AsyncPipe, JsonPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NgSelectComponent } from '@ng-select/ng-select';
 
 @Component({
     selector: 'search-autocomplete-example',
+    standalone: true,
+    imports: [JsonPipe, FormsModule, NgSelectComponent, AsyncPipe],
     templateUrl: './search-autocomplete-example.component.html',
     styleUrls: ['./search-autocomplete-example.component.scss']
 })
@@ -14,9 +19,7 @@ export class SearchAutocompleteExampleComponent implements OnInit {
     peopleLoading = false;
     peopleInput$ = new Subject<string>();
     selectedPersons: Person[] = <any>[{ name: 'Karyn Wright' }, { name: 'Other' }];
-
-    constructor(private dataService: DataService) {
-    }
+    private dataService: DataService = inject(DataService);
 
     ngOnInit() {
         this.loadPeople();

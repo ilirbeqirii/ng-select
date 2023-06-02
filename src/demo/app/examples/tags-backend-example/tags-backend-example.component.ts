@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgSelectComponent } from '@ng-select/ng-select';
 
 @Component({
     selector: 'tags-backend-example',
+    standalone: true,
+    imports: [NgSelectComponent, FormsModule],
     templateUrl: './tags-backend-example.component.html',
     styleUrls: ['./tags-backend-example.component.scss']
 })

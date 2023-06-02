@@ -1,9 +1,13 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, inject } from '@angular/core';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { DataService } from '../data.service';
+import { NgSelectComponent } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'template-display-example',
+    standalone: true,
+    imports: [NgSelectComponent, FormsModule],
     templateUrl: './template-display-example.component.html',
     styleUrls: ['./template-display-example.component.scss']
 })
@@ -12,9 +16,7 @@ export class TemplateDisplayExampleComponent implements OnInit {
     peopleTypeahead = new EventEmitter<string>();
     serverSideFilterItems = [];
     selectedPeople;
-
-    constructor(private dataService: DataService) {
-    }
+    private dataService: DataService = inject(DataService);
 
     ngOnInit() {
         this.serverSideSearch();
